@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Para Nicole 💛</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #87CEEB, white);
+            font-family: 'Georgia', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .mensaje {
+            color: #8B0000;
+            font-size: 24px;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .fecha {
+            color: #8B0000;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+        
+        .flor {
+            position: absolute;
+            animation: flotar 4s infinite ease-in-out;
+        }
+        
+        .petalo {
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .centro {
+            width: 10px;
+            height: 10px;
+            background: #8B4513;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+        
+        .tallo {
+            width: 3px;
+            height: 100px;
+            background: #228B22;
+            position: absolute;
+            top: 40px;
+            left: 19px;
+        }
+        
+        .hoja {
+            width: 10px;
+            height: 20px;
+            background: #228B22;
+            border-radius: 50%;
+            position: absolute;
+            transform: rotate(-30deg);
+        }
+        
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .corazon {
+            position: absolute;
+            font-size: 20px;
+            color: #FF6B6B;
+            animation: caer 5s linear infinite;
+        }
+        
+        @keyframes caer {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="mensaje">Para Nicole, mi sol 💛</div>
+    <div class="fecha">21 de Septiembre - Nuestro día</div>
+    
+    <script>
+        // Crear flores
+        const posiciones = [
+            {x: 100, y: 300}, {x: 250, y: 250}, 
+            {x: 400, y: 200}, {x: 550, y: 250}, 
+            {x: 700, y: 300}
+        ];
+        
+        posiciones.forEach((pos, index) => {
+            const flor = document.createElement('div');
+            flor.className = 'flor';
+            flor.style.left = pos.x + 'px';
+            flor.style.top = pos.y + 'px';
+            flor.style.animationDelay = (index * 0.5) + 's';
+            
+            // Crear pétalos
+            for (let i = 0; i < 8; i++) {
+                const angulo = (i * 45) * Math.PI / 180;
+                const petalo = document.createElement('div');
+                petalo.className = 'petalo';
+                petalo.style.left = (15 * Math.cos(angulo)) + 'px';
+                petalo.style.top = (15 * Math.sin(angulo)) + 'px';
+                flor.appendChild(petalo);
+            }
+            
+            // Centro y tallo
+            const centro = document.createElement('div');
+            centro.className = 'centro';
+            flor.appendChild(centro);
+            
+            const tallo = document.createElement('div');
+            tallo.className = 'tallo';
+            flor.appendChild(tallo);
+            
+            const hoja = document.createElement('div');
+            hoja.className = 'hoja';
+            hoja.style.top = '70px';
+            hoja.style.left = '-5px';
+            flor.appendChild(hoja);
+            
+            document.body.appendChild(flor);
+        });
+        
+        // Crear corazones que caen
+        function crearCorazones() {
+            setInterval(() => {
+                const corazon = document.createElement('div');
+                corazon.className = 'corazon';
+                corazon.innerHTML = '💛';
+                corazon.style.left = Math.random() * window.innerWidth + 'px';
+                corazon.style.animationDuration = (3 + Math.random() * 3) + 's';
+                document.body.appendChild(corazon);
+                
+                setTimeout(() => {
+                    corazon.remove();
+                }, 5000);
+            }, 300);
+        }
+        
+        crearCorazones();
+    </script>
+</body>
+</html>
